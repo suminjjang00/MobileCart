@@ -12,10 +12,11 @@ app.use(express.static(__dirname+'/public'));
 
 app.get('/',(request,response)=>{
   console.log('app.get request,response..');
-  var htmlPage = fs.readFileSync('HTML_Page.html','utf8');
+  var htmlPage = fs.readFileSync('HTML_Page.ejs','utf8');
   response.send(ejs.render(htmlPage,{
     products: products
   }));
+
 });
 server.listen(10115,()=>{
   console.log('this is test server...');

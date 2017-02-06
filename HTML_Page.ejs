@@ -3,9 +3,9 @@
   <head>
     <title>mobile cart test page</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'/>
-    <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css' />
-    <script src='https://code.jquery.com/jquery-1.11.1.min.js'></script>
-    <script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src='/socket.io/socket.io.js'></script>
     <script>
     $(document).ready(function(){
@@ -20,15 +20,12 @@
       socket.on('count',(data)=>{
         changeCount(data.index,data.count);
       });
-      $('.product > a[data-icon]').click(()=>{
-        alert('ss');
+      $('.product>a[data-icon]').click(()=>{
+
         if($(this).attr('toggle')!='off'){
-
           var index = $(this).attr('data-index');
-          alert(index+'index..');
-          socket.emit('cart',Number(index));
-          allert('index..'+index);
-
+          // 값을 못받아옴 개 빢침...
+          socket.emit('cart', Number(index));
           changeIcon(this,'ui-icon-heart','ui-icon-check');
           $(this).attr('togle','off');
         }else{
@@ -59,8 +56,8 @@
         <li data-role='list-divider'>
           products
         </li>
-        <% products.forEach(function(item,index){ %>
-          <li class='product' data-index="<%= item.index%>">
+        <% products.forEach(function(item,number){ %>
+          <li class='product' data-index='<%= item.index%>'>
             <a href='#'>
               <img src='chrome.png' alt = 'chrome' />
               <h3><%= item.name %></h3>
@@ -69,7 +66,7 @@
               </p>
               <span class='ui-li-count'><%= item.count %></span>
             </a>
-            <a href='#' data-icon='heart' data-index="<%= item.index%>"></a>
+            <a href='#' data-icon='heart' data-index='<%= item.index%>'></a>
           </li>
         <% }); %>
       </ul>
